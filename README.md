@@ -13,6 +13,7 @@ Projeto básico de PHP com Laravel feito no semestre VI do curso de Análise e D
 
 ### Lista de Entregas:
 - [X] Parte I (12/09/2022): Entrega GIT com README.md e primeira versão das Migrations
+- [X] Parte II (03/10/2022): Entrega de Menu e duas telas de cadastro com padrão de front
 
 ### Integrantes do Projeto:
 - @Otarossoni
