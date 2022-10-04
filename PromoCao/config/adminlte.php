@@ -290,11 +290,36 @@ return [
     */
 
     'menu' => [
-        ['header' => 'Lojas'],
+        ['header' => 'Cadastros'],
         [
-            'text'       => 'Listagem',
+            'text'       => 'Tipos de Usuário',
+            'url'        => 'tipos',
+            'icon'       => 'fas fa-fw fa-user'
+        ],
+        [
+            'text'       => 'Lojas',
             'url'        => 'lojas',
+            'icon'       => 'fas fa-fw fa-shopping-bag'
+        ],
+        [
+            'text'       => 'Usuários',
+            'url'        => '',
             'icon'       => 'fas fa-fw fa-users'
+        ],
+        [
+            'text'       => 'Cupons',
+            'url'        => '',
+            'icon'       => 'fas fa-fw fa-credit-card'
+        ],
+        [
+            'text'       => 'Promoções',
+            'url'        => '',
+            'icon'       => 'fas fa-fw fa-crosshairs'
+        ],
+        [
+            'text'       => 'Denuncia',
+            'url'        => '',
+            'icon'       => 'fas fa-fw fa-times'
         ],
     ],
 

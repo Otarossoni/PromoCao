@@ -22,6 +22,10 @@ Route::get('lojas', [\App\Http\Controllers\LojasController::class, 'index'])->na
 Route::get('lojas/create', [\App\Http\Controllers\LojasController::class, 'create']);
 Route::post('lojas/store', [\App\Http\Controllers\LojasController::class, 'store']);
 
+Route::get('tipos', [\App\Http\Controllers\TipoUsuariosController::class, 'index'])->name('tipos');
+Route::get('tipos/create', [\App\Http\Controllers\TipoUsuariosController::class, 'create']);
+Route::post('tipos/store', [\App\Http\Controllers\TipoUsuariosController::class, 'store']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

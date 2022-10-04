@@ -2,6 +2,8 @@
 
 @section ('content')
     <h1>Lojas</h1>
+    <button type="button" class="btn btn-primary" onclick="location.href='{{ url('lojas/create') }}'">Inserir</button><p></p>
+
     <table class="table table-stripe table-bordered table-hover">
         <thead>
             <th>Nome</th>
