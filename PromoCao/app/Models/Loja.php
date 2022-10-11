@@ -9,5 +9,6 @@ class Loja extends Model
 {
     use HasFactory;
     protected $table = 'lojas';
+    protected $primaryKey = "loja_id";
     protected $fillable = ['loja_nomeFantasia', 'loja_url'];
 }

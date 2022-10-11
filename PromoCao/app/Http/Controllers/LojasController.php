@@ -26,4 +26,22 @@ class LojasController extends Controller
 
         return redirect()->route('lojas');
     }
+
+    public function destroy($loja_id)
+    {
+        Loja::where("loja_id", $loja_id)->delete();
+        return redirect()->route('lojas');
+    }
+
+    public function edit($loja_id)
+    {
+        $loja = Loja::where("loja_id", $loja_id)->first();
+        return view ('lojas.edit', compact('loja'));
+    }
+    
+    public function update(LojaRequest $request, $loja_id)
+    {
+        Loja::where("loja_id", $loja_id)->first()->update($request->all());
+        return redirect()->route('lojas');
+    }
 }
