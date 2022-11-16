@@ -13,7 +13,7 @@ class CreateCupomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cupoms', function (Blueprint $table) {
+        Schema::create('cupons', function (Blueprint $table) {
             $table->bigIncrements('cupom_id');
             $table->string('cupom_titulo');
             $table->string('cupom_aplicavel');
@@ -30,6 +30,6 @@ class CreateCupomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cupoms');
+        Schema::dropIfExists('cupons');
     }
 }

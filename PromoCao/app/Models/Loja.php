@@ -11,4 +11,9 @@ class Loja extends Model
     protected $table = 'lojas';
     protected $primaryKey = "loja_id";
     protected $fillable = ['loja_nomeFantasia', 'loja_url'];
+
+    public function cupons()
+    {
+        return $this->hasMany('App\Models\Cupom');
+    }
 }

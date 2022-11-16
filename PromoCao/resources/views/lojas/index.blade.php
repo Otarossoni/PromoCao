@@ -23,6 +23,9 @@
             @endforeach
         </tbody>
     </table>
+
+    {{ $lojas->links("pagination::bootstrap-4")}}
+
     <a href="{{ route('lojas.create', []) }}" class="btn-sm btn-info">Adicionar</a>
 @stop
 

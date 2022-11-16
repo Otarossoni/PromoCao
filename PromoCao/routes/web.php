@@ -27,12 +27,16 @@ Route::group(['prefix'=>'lojas', 'where'=>['loja_id'=>'[0-9]+']], function() {
     Route::put('{loja_id}/update', ['as'=>'lojas.update', 'uses'=>'\App\Http\Controllers\LojasController@update']);
 });
 
-// Route::get('lojas', [\App\Http\Controllers\LojasController::class, 'index'])->name('lojas');
-// Route::get('lojas/create', [\App\Http\Controllers\LojasController::class, 'create']);
-// Route::post('lojas/store', [\App\Http\Controllers\LojasController::class, 'store']);
-// Route::get('lojas/{loja_id}/destroy', [\App\Http\Controllers\LojasController::class, 'destroy']);
-// Route::get('lojas/{loja_id}/edit', [\App\Http\Controllers\LojasController::class, 'edit']);
-// Route::put('lojas/{loja_id}/update', [\App\Http\Controllers\LojasController::class, 'update']);
+Route::group(['prefix'=>'cupons', 'where'=>['cupom_id'=>'[0-9]+']], function() {
+    Route::get('', ['as'=>'cupons', 'uses'=>'\App\Http\Controllers\CupomsController@index']);
+    Route::get('create', ['as'=>'cupons.create', 'uses'=>'\App\Http\Controllers\CupomsController@create']);
+    Route::post('store', ['as'=>'cupons.store', 'uses'=>'\App\Http\Controllers\CupomsController@store']);
+    Route::get('{cupom_id}/destroy', ['as'=>'cupons.destroy', 'uses'=>'\App\Http\Controllers\CupomsController@destroy']);
+    Route::get('{cupom_id}/edit', ['as'=>'cupons.edit', 'uses'=>'\App\Http\Controllers\CupomsController@edit']);
+    Route::put('{cupom_id}/update', ['as'=>'cupons.update', 'uses'=>'\App\Http\Controllers\CupomsController@update']);
+});
+
+
 
 Route::get('tipos', [\App\Http\Controllers\TipoUsuariosController::class, 'index'])->name('tipos');
 Route::get('tipos/create', [\App\Http\Controllers\TipoUsuariosController::class, 'create']);

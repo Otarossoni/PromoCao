@@ -292,11 +292,6 @@ return [
     'menu' => [
         ['header' => 'Cadastros'],
         [
-            'text'       => 'Tipos de Usuário',
-            'url'        => 'tipos',
-            'icon'       => 'fas fa-fw fa-user'
-        ],
-        [
             'text'       => 'Lojas',
             'url'        => 'lojas',
             'icon'       => 'fas fa-fw fa-shopping-bag'
@@ -308,7 +303,7 @@ return [
         ],
         [
             'text'       => 'Cupons',
-            'url'        => '',
+            'url'        => 'cupons',
             'icon'       => 'fas fa-fw fa-credit-card'
         ],
         [

@@ -1,5 +1,5 @@
 <?php
-
+    
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ class LojasController extends Controller
 {
     public function index()
     {
-        $lojas = Loja::all();
+        $lojas = Loja::orderBy('loja_nomeFantasia')->paginate(5);
         return view('lojas.index', ['lojas' => $lojas]);
     }
 
