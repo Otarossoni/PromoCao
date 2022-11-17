@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Denuncia extends Model
 {
     use HasFactory;
+    protected $table = 'denuncias';
+    protected $primaryKey = "denuncia_id";
+    protected $fillable = ['denuncia_titulo', 'denuncia_descricao', 'consumidor_id'];
 }

@@ -13,15 +13,14 @@ class CreatePromocaosTable extends Migration
      */
     public function up()
     {
-        Schema::create('promocaos', function (Blueprint $table) {
+        Schema::create('promocoes', function (Blueprint $table) {
             $table->bigIncrements('promocao_id');
             $table->string('promocao_titulo');
             $table->string('promocao_descricao');
             $table->float('promocao_preco');
             $table->string('promocao_url');
-            $table->integer('cupom_id');
             $table->integer('loja_id');
-            $table->integer('usuario_id');
+            $table->integer('consumidor_id');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreatePromocaosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('promocaos');
+        Schema::dropIfExists('promocoes');
     }
 }

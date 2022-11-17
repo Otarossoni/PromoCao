@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComentariosTable extends Migration
+class CreateConsumidorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateComentariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('comentarios', function (Blueprint $table) {
-            $table->bigIncrements('comentario_id');
-            $table->string('comentario_titulo');
-            $table->string('comentario_descricao');
-            $table->integer('consumidor_id');
-            $table->integer('promocao_id');
+        Schema::create('consumidores', function (Blueprint $table) {
+            $table->bigIncrements('consumidor_id');
+            $table->string('consumidor_nome');
+            $table->string('consumidor_email');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateComentariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comentarios');
+        Schema::dropIfExists('consumidores');
     }
 }

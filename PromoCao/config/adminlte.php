@@ -297,8 +297,8 @@ return [
             'icon'       => 'fas fa-fw fa-shopping-bag'
         ],
         [
-            'text'       => 'Usuários',
-            'url'        => '',
+            'text'       => 'Consumidores',
+            'url'        => 'consumidores',
             'icon'       => 'fas fa-fw fa-users'
         ],
         [
@@ -308,13 +308,18 @@ return [
         ],
         [
             'text'       => 'Promoções',
-            'url'        => '',
+            'url'        => 'promocoes',
             'icon'       => 'fas fa-fw fa-crosshairs'
         ],
         [
-            'text'       => 'Denuncia',
-            'url'        => '',
+            'text'       => 'Denúncias',
+            'url'        => 'denuncias',
             'icon'       => 'fas fa-fw fa-times'
+        ],
+        [
+            'text'       => 'Comentários',
+            'url'        => 'comentarios',
+            'icon'       => 'fas fa-fw fa-comment'
         ],
     ],
 

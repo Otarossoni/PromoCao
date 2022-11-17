@@ -17,7 +17,7 @@ class CreateDenunciasTable extends Migration
             $table->bigIncrements('denuncia_id');
             $table->string('denuncia_titulo');
             $table->string('denuncia_descricao');
-            $table->integer('usuario_id');
+            $table->integer('consumidor_id');
             $table->timestamps();
         });
     }
