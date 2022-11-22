@@ -8,9 +8,15 @@ use App\Http\Requests\DenunciaRequest;
 
 class DenunciasController extends Controller
 {
-    public function index()
+    public function index(Request $filtro)
     {
-        $denuncias = Denuncia::orderBy('denuncia_titulo')->paginate(5);
+        $filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+            $denuncias = Denuncia::orderBy('denuncia_titulo')->paginate(10);
+        } else {
+            $denuncias = Denuncia::where('denuncia_titulo', 'like', '%' . $filtragem . '%')->orderBy('denuncia_titulo')->paginate(10)->setpath('denuncias?desc_filtro=' . $filtragem);
+        }
+        // $denuncias = Denuncia::orderBy('denuncia_titulo')->paginate(5);
         return view('denuncias.index', ['denuncias' => $denuncias]);
     }
 
@@ -29,8 +35,17 @@ class DenunciasController extends Controller
 
     public function destroy($denuncia_id)
     {
-        Denuncia::where("denuncia_id", $denuncia_id)->delete();
-        return redirect()->route('denuncias');
+        try {
+            Denuncia::where("denuncia_id", $denuncia_id)->delete();
+            $ret = array('status' => 200, 'msg' => 'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        }
+        return $ret;
+        // Denuncia::where("denuncia_id", $denuncia_id)->delete();
+        // return redirect()->route('denuncias');
     }
 
     public function edit($denuncia_id)

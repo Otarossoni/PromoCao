@@ -8,9 +8,15 @@ use App\Http\Requests\PromocaoRequest;
 
 class PromocaosController extends Controller
 {
-    public function index()
+    public function index(Request $filtro)
     {
-        $promocoes = Promocao::orderBy('promocao_titulo')->paginate(5);
+        $filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+            $promocoes = Promocao::orderBy('promocao_titulo')->paginate(10);
+        } else {
+            $promocoes = Promocao::where('promocao_titulo', 'like', '%' . $filtragem . '%')->orderBy('promocao_titulo')->paginate(10)->setpath('promocoes?desc_filtro=' . $filtragem);
+        }
+        // $promocoes = Promocao::orderBy('promocao_titulo')->paginate(5);
         return view('promocoes.index', ['promocoes' => $promocoes]);
     }
 
@@ -21,16 +27,39 @@ class PromocaosController extends Controller
 
     public function store(PromocaoRequest $request)
     {
-        $nova_promocao = $request->all();
-        Promocao::create($nova_promocao);
+        $promocao = Promocao::create([
+            'promocao_titulo' => $request->promocao_titulo,
+            'promocao_descricao' => $request->promocao_descricao,
+            'promocao_preco' => $request->promocao_preco,
+            'promocao_url' => $request->promocao_url,
+        ]);
+
+        $cupons = $request->cupons;
+        foreach($cupons as $c => $value) {
+            PromocaoCupom::create([
+                promocao_id => $promocao->promocao_id,
+                cupom_id => $cupons[$c],
+            ]);
+        }
+        // $nova_promocao = $request->all();
+        // Promocao::create($nova_promocao);
 
         return redirect()->route('promocoes');
     }
 
     public function destroy($promocao_id)
     {
-        Promocao::where("promocao_id", $promocao_id)->delete();
-        return redirect()->route('promocoes');
+        try {
+            Promocao::where("promocao_id", $promocao_id)->delete();
+            $ret = array('status' => 200, 'msg' => 'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        }
+        return $ret;
+        // Promocao::where("promocao_id", $promocao_id)->delete();
+        // return redirect()->route('promocoes');
     }
 
     public function edit($promocao_id)

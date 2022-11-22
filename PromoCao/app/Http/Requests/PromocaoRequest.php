@@ -28,6 +28,8 @@ class PromocaoRequest extends FormRequest
             'promocao_descricao' => 'required',
             'promocao_preco' => 'required',
             'promocao_url' => 'required',
+            'loja_id' => 'required',
+            'consumidor_id' => 'required',
         ];
     }
 }

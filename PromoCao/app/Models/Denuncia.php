@@ -11,4 +11,9 @@ class Denuncia extends Model
     protected $table = 'denuncias';
     protected $primaryKey = "denuncia_id";
     protected $fillable = ['denuncia_titulo', 'denuncia_descricao', 'consumidor_id'];
+
+    public function consumidor()
+    {
+        return $this->belongsTo('App\Models\Consumidor', 'consumidor_id');
+    }
 }

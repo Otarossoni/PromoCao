@@ -8,9 +8,15 @@ use App\Http\Requests\CupomRequest;
 
 class CupomsController extends Controller
 {
-    public function index()
+    public function index(Request $filtro)
     {
-        $cupons = Cupom::orderBy('cupom_titulo')->paginate(5);
+        $filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+            $cupons = Cupom::orderBy('cupom_titulo')->paginate(10);
+        } else {
+            $cupons = Cupom::where('cupom_titulo', 'like', '%' . $filtragem . '%')->orderBy('cupom_titulo')->paginate(10)->setpath('cupons?desc_filtro=' . $filtragem);
+        }
+        // $cupons = Cupom::orderBy('cupom_titulo')->paginate(5);
         return view('cupons.index', ['cupons' => $cupons]);
     }
 
@@ -29,8 +35,17 @@ class CupomsController extends Controller
 
     public function destroy($cupom_id)
     {
-        Cupom::where("cupom_id", $cupom_id)->delete();
-        return redirect()->route('cupons');
+        try {
+            Cupom::where("cupom_id", $cupom_id)->delete();
+            $ret = array('status' => 200, 'msg' => 'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        }
+        return $ret;
+        // Cupom::where("cupom_id", $cupom_id)->delete();
+        // return redirect()->route('cupons');
     }
 
     public function edit($cupom_id)

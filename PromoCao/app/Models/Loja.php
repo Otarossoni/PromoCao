@@ -16,4 +16,9 @@ class Loja extends Model
     {
         return $this->hasMany('App\Models\Cupom');
     }
+
+    public function promocoes()
+    {
+        return $this->hasMany('App\Models\Promocao');
+    }
 }

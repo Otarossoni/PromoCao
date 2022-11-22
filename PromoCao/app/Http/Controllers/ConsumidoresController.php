@@ -8,10 +8,18 @@ use App\Http\Requests\ConsumidorRequest;
 
 class ConsumidoresController extends Controller
 {
-    public function index()
+    public function index(Request $filtro)
     {
-        $consumidores = Consumidor::orderBy('consumidor_nome')->paginate(5);
+        $filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+            $consumidores = Consumidor::orderBy('consumidor_nome')->paginate(10);
+        } else {
+            $consumidores = Consumidor::where('consumidor_nome', 'like', '%' . $filtragem . '%')->orderBy('consumidor_nome')->paginate(10)->setpath('consumidores?desc_filtro=' . $filtragem);
+        }
+        
         return view('consumidores.index', ['consumidores' => $consumidores]);
+        // $consumidores = Consumidor::orderBy('consumidor_nome')->paginate(5);
+        // return view('consumidores.index', ['consumidores' => $consumidores]);
     }
 
     public function create()
@@ -29,8 +37,17 @@ class ConsumidoresController extends Controller
 
     public function destroy($consumidor_id)
     {
-        Consumidor::where("consumidor_id", $consumidor_id)->delete();
-        return redirect()->route('consumidores');
+        try {
+            Consumidor::where("consumidor_id", $consumidor_id)->delete();
+            $ret = array('status' => 200, 'msg' => 'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        }
+        return $ret;
+        // Consumidor::where("consumidor_id", $consumidor_id)->delete();
+        // return redirect()->route('consumidores');
     }
 
     public function edit($consumidor_id)

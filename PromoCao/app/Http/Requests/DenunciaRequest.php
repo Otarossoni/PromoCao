@@ -26,6 +26,7 @@ class DenunciaRequest extends FormRequest
         return [
             'denuncia_titulo' => 'required',
             'denuncia_descricao' => 'required',
+            'consumidor_id' => 'required',
         ];
     }
 }

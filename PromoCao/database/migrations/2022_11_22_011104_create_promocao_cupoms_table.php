@@ -14,9 +14,11 @@ class CreatePromocaoCupomsTable extends Migration
     public function up()
     {
         Schema::create('promocao_cupoms', function (Blueprint $table) {
-            $table->integer('promocao_id');
-            $table->integer('cupom_id');
-            $table->float('promocaoCupom_desconto');
+            $table->bigIncrements('promocao_cupom_id');
+            $table->bigInteger('promocao_id')->unsigned()->nullable();
+            $table->foreign('promocao_id')->references('promocao_id')->on('promocoes');
+            $table->bigInteger('cupom_id')->unsigned()->nullable();
+            $table->foreign('cupom_id')->references('cupom_id')->on('cupons');
             $table->timestamps();
         });
     }

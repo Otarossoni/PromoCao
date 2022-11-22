@@ -8,9 +8,15 @@ use App\Http\Requests\ComentarioRequest;
 
 class ComentariosController extends Controller
 {
-    public function index()
+    public function index(Request $filtro)
     {
-        $comentarios = Comentario::orderBy('comentario_titulo')->paginate(5);
+        $filtragem = $filtro->get('desc_filtro');
+        if ($filtragem == null) {
+            $comentarios = Comentario::orderBy('comentario_titulo')->paginate(10);
+        } else {
+            $comentarios = Comentario::where('comentario_titulo', 'like', '%' . $filtragem . '%')->orderBy('comentario_titulo')->paginate(10)->setpath('comentarios?desc_filtro=' . $filtragem);
+        }
+        // $comentarios = Comentario::orderBy('comentario_titulo')->paginate(5);
         return view('comentarios.index', ['comentarios' => $comentarios]);
     }
 
@@ -29,8 +35,17 @@ class ComentariosController extends Controller
 
     public function destroy($comentario_id)
     {
-        Comentario::where("comentario_id", $comentario_id)->delete();
-        return redirect()->route('comentarios');
+        try {
+            Comentario::where("comentario_id", $comentario_id)->delete();
+            $ret = array('status' => 200, 'msg' => 'null');
+        } catch (\Illuminate\Database\QueryException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        } catch (\PDOException $e) {
+            $ret = array('status' => 500, 'msg' => $e->getMessage());
+        }
+        return $ret;
+        // Comentario::where("comentario_id", $comentario_id)->delete();
+        // return redirect()->route('comentarios');
     }
 
     public function edit($comentario_id)

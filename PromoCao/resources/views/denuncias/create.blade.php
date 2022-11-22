@@ -24,7 +24,8 @@
         </div>
         <div class="form-group">
             {!! Form::label('consumidor_id', 'Consumidor:') !!}
-            {!! Form::text('consumidor_id', null, ['class' => 'form-control', 'required']) !!}
+            {!! Form::select('consumidor_id', \App\Models\Consumidor::orderBy('consumidor_nome')
+                ->pluck('consumidor_nome', 'consumidor_id')->toArray(), null,['class' => 'form-control', 'required']) !!}
         </div>
         <div class="form-group">
             {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}

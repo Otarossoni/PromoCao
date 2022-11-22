@@ -290,6 +290,11 @@ return [
     */
 
     'menu' => [
+        [
+            'text'       => 'Home',
+            'url'        => 'home',
+            'icon'       => 'fas fa-fw fa-home'
+        ],
         ['header' => 'Cadastros'],
         [
             'text'       => 'Lojas',

@@ -26,6 +26,8 @@ class ComentarioRequest extends FormRequest
         return [
             'comentario_titulo' => 'required',
             'comentario_descricao' => 'required',
+            'promocao_id' => 'required',
+            'consumidor_id' => 'required',
         ];
     }
 }

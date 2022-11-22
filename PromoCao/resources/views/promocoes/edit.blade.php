@@ -33,11 +33,13 @@
         </div>
         <div class="form-group">
             {!! Form::label('loja_id', 'Loja:') !!}
-            {!! Form::text('loja_id', $promocao->loja_id, ['class' => 'form-control', 'required']) !!}
+            {!! Form::select('loja_id', \App\Models\Loja::orderBy('loja_nomeFantasia')
+                ->pluck('loja_nomeFantasia', 'loja_id')->toArray(), $promocao->loja_id,['class' => 'form-control', 'required']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('consumidor_id', 'Consumidor:') !!}
-            {!! Form::text('consumidor_id', $promocao->consumidor_id, ['class' => 'form-control', 'required']) !!}
+            {!! Form::select('consumidor_id', \App\Models\Consumidor::orderBy('consumidor_nome')
+                ->pluck('consumidor_nome', 'consumidor_id')->toArray(), $promocao->consumidor_id,['class' => 'form-control', 'required']) !!}
         </div>
         <div class="form-group">
             {!! Form::submit('Editar Promoção', ['class' => 'btn btn-primary']) !!}

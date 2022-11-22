@@ -13,13 +13,18 @@
             }).then(function(isConfirm) {
                 if(isConfirm.value) {
                     $.get('/' + @yield('table-delete') + '/' + id + '/destroy', function(data){
-                        Swal.fire(
-                            'Deletado!',
-                            'Exclusão confirmada.',
-                            'success'
-                        ).then(function() {
+                        console.log(data)
+                        if(data.status == 200) {
+                            Swal.fire(
+                                'Deletado!',
+                                'Exclusão confirmada.',
+                                'success'
+                            ).then(function() {
                             window.location.reload();
                         })
+                        } else {
+                            Swal.fire('Erro!', 'Ocorreram erros na exclusão. Entre em contato com o suporte.', 'error')
+                        }
                     })
                 }
             })
