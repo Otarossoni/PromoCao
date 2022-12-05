@@ -1,10 +1,10 @@
 @extends ('layouts.default')
 
 @section ('content')
-    <h1>Cupons</h1>
+    <h1 style="text-align: center; padding: 3%">Cupons</h1>
 
     {!! Form::open(['name' => 'form-name', 'route' => 'cupons']) !!}
-        <div class="sidebar-form">
+        <div class="sidebar-form" style="margin-left: 25%; width: 50%">
             <div class="input-group">
                 <input type="text" name="desc_filtro" class="form-control" style="width: 80% !important;" placeholder="Pesquisa...">
                 <span class="input-group-btn">

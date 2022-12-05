@@ -1,10 +1,10 @@
 @extends ('layouts.default')
 
 @section ('content')
-    <h1>Promoções</h1>
+    <h1 style="text-align: center; padding: 3%">Promoções</h1>
 
     {!! Form::open(['name' => 'form-name', 'route' => 'promocoes']) !!}
-        <div class="sidebar-form">
+        <div class="sidebar-form" style="margin-left: 25%; width: 50%">
             <div class="input-group">
                 <input type="text" name="desc_filtro" class="form-control" style="width: 80% !important;" placeholder="Pesquisa...">
                 <span class="input-group-btn">
@@ -36,7 +36,11 @@
                     <td>{{ $promocao->promocao_url }} </td>
                     <td>{{ isset($promocao->consumidor->consumidor_nome) ? $promocao->consumidor->consumidor_nome : "Consumidor não informado!" }}</td>
                     <td>{{ isset($promocao->loja->loja_nomeFantasia) ? $promocao->loja->loja_nomeFantasia : "Loja não informada!" }}</td>
-                    <td>-</td>
+                    <td>
+                        @foreach($promocao->cupons as $c)
+                            <li>{{ $c->cupom->cupom_aplicavel }}</li>
+                        @endforeach
+                    </td>
                     <td>
                         <a href="{{ route('promocoes.edit', ['promocao_id' => $promocao->promocao_id]) }}" class="btn-sm btn-success">Editar</a>
                         <a href="#" onClick="return ConfirmaExclusao({{$promocao->promocao_id}})" class="btn-sm btn-danger">Excluir</a>

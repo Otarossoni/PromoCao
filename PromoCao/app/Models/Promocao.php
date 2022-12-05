@@ -24,6 +24,11 @@ class Promocao extends Model
 
     public function comentarios()
     {
-        return $this->hasMany('App\Models\Comentario');
+        return $this->hasMany('App\Models\Comentario', 'comentario_id');
+    }
+
+    public function cupons()
+    {
+        return $this->hasMany('App\Models\Cupom', 'cupom_id');
     }
 }

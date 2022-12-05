@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Promocao;
+use App\Models\PromocaoCupom;
 use App\Http\Requests\PromocaoRequest;
 
 class PromocaosController extends Controller
@@ -37,12 +38,12 @@ class PromocaosController extends Controller
         $cupons = $request->cupons;
         foreach($cupons as $c => $value) {
             PromocaoCupom::create([
-                promocao_id => $promocao->promocao_id,
-                cupom_id => $cupons[$c],
+                'promocao_id' => $promocao->promocao_id,
+                'cupom_id' => $cupons[$c],
             ]);
         }
-        // $nova_promocao = $request->all();
-        // Promocao::create($nova_promocao);
+        $nova_promocao = $request->all();
+        Promocao::create($nova_promocao);
 
         return redirect()->route('promocoes');
     }
