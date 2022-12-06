@@ -37,8 +37,8 @@
                     <td>{{ isset($promocao->consumidor->consumidor_nome) ? $promocao->consumidor->consumidor_nome : "Consumidor não informado!" }}</td>
                     <td>{{ isset($promocao->loja->loja_nomeFantasia) ? $promocao->loja->loja_nomeFantasia : "Loja não informada!" }}</td>
                     <td>
-                        @foreach($promocao->cupons as $c)
-                            <li>{{ $c->cupom->cupom_aplicavel }}</li>
+                        @foreach($promocao->promocaoCupons as $pc)
+                            <li style="list-style-type: none">{{ $pc->cupom->cupom_aplicavel }}</li>
                         @endforeach
                     </td>
                     <td>

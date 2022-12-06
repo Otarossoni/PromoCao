@@ -31,4 +31,9 @@ class Promocao extends Model
     {
         return $this->hasMany('App\Models\Cupom', 'cupom_id');
     }
+
+    public function promocaoCupons()
+    {
+        return $this->hasMany('App\Models\PromocaoCupom', 'promocao_id');
+    }
 }

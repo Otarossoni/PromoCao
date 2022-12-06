@@ -15,5 +15,11 @@ class Cupom extends Model
     {
         return $this->belongsTo('App\Models\Loja', 'loja_id');
     }
+
+    public function promocaoCupons()
+    {
+        return $this->hasMany('App\Models\PromocaoCupom', 'cupom_id');
+    }
+    
     use HasFactory;
 }
